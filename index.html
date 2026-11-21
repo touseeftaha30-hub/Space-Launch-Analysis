@@ -17,33 +17,43 @@
       --success: #34D399;
       --danger: #F87171;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Inter', sans-serif;
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+    }
+    html, body {
+      width: 100%;
+      min-height: 100vh;
       background-color: var(--bg);
       color: var(--text);
+      font-family: 'Inter', sans-serif;
       line-height: 1.5;
-      padding: 30px 20px;
+    }
+    body {
+      padding: 24px 16px;
+      overflow-x: hidden;
     }
     .container {
+      width: 100%;
       max-width: 1200px;
       margin: 0 auto;
     }
     header {
       text-align: center;
-      margin-bottom: 35px;
+      margin-bottom: 28px;
     }
     header h1 {
-      font-size: 2.3rem;
+      font-size: clamp(1.6rem, 4vw, 2.3rem);
       font-weight: 800;
       background: linear-gradient(90deg, #38BDF8, #818CF8);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
     header p {
       color: var(--text-muted);
-      font-size: 1.05rem;
+      font-size: clamp(0.85rem, 2.5vw, 1rem);
     }
     .badge {
       display: inline-block;
@@ -52,33 +62,35 @@
       background: rgba(56, 189, 248, 0.15);
       color: var(--accent);
       font-weight: 600;
-      font-size: 0.85rem;
-      margin-top: 10px;
+      font-size: 0.8rem;
+      margin-top: 8px;
     }
+
     /* Metric Cards */
     .metrics-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 16px;
-      margin-bottom: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      margin-bottom: 24px;
+      width: 100%;
     }
     .metric-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 20px;
+      padding: 16px;
       text-align: center;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
     }
     .metric-title {
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
     .metric-val {
-      font-size: 1.9rem;
+      font-size: clamp(1.4rem, 3.5vw, 1.8rem);
       font-weight: 800;
       color: #FFF;
     }
@@ -88,21 +100,23 @@
     /* Tabs */
     .tabs {
       display: flex;
-      gap: 10px;
-      margin-bottom: 25px;
+      gap: 8px;
+      margin-bottom: 20px;
       flex-wrap: wrap;
       justify-content: center;
+      width: 100%;
     }
     .tab-btn {
       background: var(--card-bg);
       color: var(--text-muted);
       border: 1px solid var(--border);
-      padding: 10px 18px;
+      padding: 8px 14px;
       border-radius: 8px;
       cursor: pointer;
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: clamp(0.78rem, 2vw, 0.88rem);
       transition: all 0.2s;
+      white-space: nowrap;
     }
     .tab-btn:hover, .tab-btn.active {
       background: var(--accent);
@@ -110,51 +124,63 @@
       border-color: var(--accent);
     }
 
-    /* Tab Content */
+    /* Tab Content Card */
     .tab-pane {
       display: none;
+      width: 100%;
       background: var(--card-bg);
       border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 25px;
-      box-shadow: 0 4px 25px rgba(0,0,0,0.3);
-      animation: fadeIn 0.25s ease-in-out;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      animation: fadeIn 0.2s ease-in-out;
     }
     .tab-pane.active {
       display: block;
     }
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
+      from { opacity: 0; transform: translateY(4px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Table styling */
+    /* Responsive Table Container (Fixes Mobile Overflow) */
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
     table {
       width: 100%;
+      min-width: 580px; /* guarantees full columns without breaking */
       border-collapse: collapse;
-      font-size: 0.92rem;
+      font-size: 0.88rem;
       text-align: left;
     }
     th {
-      background: rgba(255, 255, 255, 0.04);
+      background: rgba(255, 255, 255, 0.05);
       color: var(--text-muted);
-      padding: 12px 14px;
+      padding: 10px 12px;
       font-weight: 600;
       border-bottom: 2px solid var(--border);
+      white-space: nowrap;
     }
     td {
-      padding: 12px 14px;
+      padding: 10px 12px;
       border-bottom: 1px solid var(--border);
+      white-space: nowrap;
     }
     tr:hover td {
       background: rgba(255, 255, 255, 0.02);
     }
     .rate-pill {
       display: inline-block;
-      padding: 3px 8px;
-      border-radius: 6px;
+      padding: 2px 7px;
+      border-radius: 5px;
       font-weight: 600;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       background: rgba(52, 211, 153, 0.15);
       color: var(--success);
     }
@@ -164,9 +190,9 @@
     }
     footer {
       text-align: center;
-      margin-top: 50px;
+      margin-top: 40px;
       color: var(--text-muted);
-      font-size: 0.85rem;
+      font-size: 0.8rem;
     }
   </style>
 </head>
@@ -204,114 +230,130 @@
 
     <!-- Navigation Tabs -->
     <div class="tabs">
-      <button class="tab-btn active" onclick="switchTab('tab-trends')">📈 Launch Trends</button>
-      <button class="tab-btn" onclick="switchTab('tab-pads')">📍 Busiest Pads</button>
-      <button class="tab-btn" onclick="switchTab('tab-orbits')">🪐 Target Orbits</button>
-      <button class="tab-btn" onclick="switchTab('tab-providers')">🏢 Top Providers</button>
-      <button class="tab-btn" onclick="switchTab('tab-rockets')">🚀 Workhorse Rockets</button>
-      <button class="tab-btn" onclick="switchTab('tab-missions')">🎯 Mission Types</button>
-      <button class="tab-btn" onclick="switchTab('tab-countries')">🌍 Countries</button>
+      <button class="tab-btn active" onclick="switchTab('tab-trends', event)">📈 Launch Trends</button>
+      <button class="tab-btn" onclick="switchTab('tab-pads', event)">📍 Busiest Pads</button>
+      <button class="tab-btn" onclick="switchTab('tab-orbits', event)">🪐 Target Orbits</button>
+      <button class="tab-btn" onclick="switchTab('tab-providers', event)">🏢 Top Providers</button>
+      <button class="tab-btn" onclick="switchTab('tab-rockets', event)">🚀 Workhorse Rockets</button>
+      <button class="tab-btn" onclick="switchTab('tab-missions', event)">🎯 Mission Types</button>
+      <button class="tab-btn" onclick="switchTab('tab-countries', event)">🌍 Countries</button>
     </div>
 
     <!-- Tab 1: Trends -->
     <div id="tab-trends" class="tab-pane active">
-      <h3 style="margin-bottom: 15px;">Historical Launch Volume by Decade (Descending Order)</h3>
-      <table style="margin-bottom: 30px;">
-        <thead>
-          <tr><th>Rank</th><th>Decade</th><th>Total Launches</th><th>Successes</th><th>Failures</th><th>Success Rate</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><b>#1</b></td><td><b>2020s</b></td><td>1583</td><td style='color:var(--success)'>1510</td><td style='color:var(--danger)'>73</td><td><span class='rate-pill'>95.39%</span></td></tr><tr><td><b>#2</b></td><td><b>1970s</b></td><td>1209</td><td style='color:var(--success)'>1131</td><td style='color:var(--danger)'>78</td><td><span class='rate-pill'>93.55%</span></td></tr><tr><td><b>#3</b></td><td><b>1980s</b></td><td>1150</td><td style='color:var(--success)'>1101</td><td style='color:var(--danger)'>49</td><td><span class='rate-pill'>95.74%</span></td></tr><tr><td><b>#4</b></td><td><b>1960s</b></td><td>996</td><td style='color:var(--success)'>855</td><td style='color:var(--danger)'>141</td><td><span class='rate-pill'>85.84%</span></td></tr><tr><td><b>#5</b></td><td><b>1990s</b></td><td>799</td><td style='color:var(--success)'>748</td><td style='color:var(--danger)'>51</td><td><span class='rate-pill'>93.62%</span></td></tr><tr><td><b>#6</b></td><td><b>2010s</b></td><td>695</td><td style='color:var(--success)'>656</td><td style='color:var(--danger)'>39</td><td><span class='rate-pill'>94.39%</span></td></tr><tr><td><b>#7</b></td><td><b>2000s</b></td><td>579</td><td style='color:var(--success)'>549</td><td style='color:var(--danger)'>30</td><td><span class='rate-pill'>94.82%</span></td></tr><tr><td><b>#8</b></td><td><b>1950s</b></td><td>59</td><td style='color:var(--success)'>24</td><td style='color:var(--danger)'>35</td><td><span class='rate-pill'>40.68%</span></td></tr>
-        </tbody>
-      </table>
+      <h3 style="margin-bottom: 12px; font-size: 1.05rem;">Historical Launch Volume by Decade (Descending Order)</h3>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr><th>Rank</th><th>Decade</th><th>Total Launches</th><th>Successes</th><th>Failures</th><th>Success Rate</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>#1</b></td><td><b>2020s</b></td><td>1583</td><td style='color:var(--success)'>1510</td><td style='color:var(--danger)'>73</td><td><span class='rate-pill'>95.39%</span></td></tr><tr><td><b>#2</b></td><td><b>1970s</b></td><td>1209</td><td style='color:var(--success)'>1131</td><td style='color:var(--danger)'>78</td><td><span class='rate-pill'>93.55%</span></td></tr><tr><td><b>#3</b></td><td><b>1980s</b></td><td>1150</td><td style='color:var(--success)'>1101</td><td style='color:var(--danger)'>49</td><td><span class='rate-pill'>95.74%</span></td></tr><tr><td><b>#4</b></td><td><b>1960s</b></td><td>996</td><td style='color:var(--success)'>855</td><td style='color:var(--danger)'>141</td><td><span class='rate-pill'>85.84%</span></td></tr><tr><td><b>#5</b></td><td><b>1990s</b></td><td>799</td><td style='color:var(--success)'>748</td><td style='color:var(--danger)'>51</td><td><span class='rate-pill'>93.62%</span></td></tr><tr><td><b>#6</b></td><td><b>2010s</b></td><td>695</td><td style='color:var(--success)'>656</td><td style='color:var(--danger)'>39</td><td><span class='rate-pill'>94.39%</span></td></tr><tr><td><b>#7</b></td><td><b>2000s</b></td><td>579</td><td style='color:var(--success)'>549</td><td style='color:var(--danger)'>30</td><td><span class='rate-pill'>94.82%</span></td></tr><tr><td><b>#8</b></td><td><b>1950s</b></td><td>59</td><td style='color:var(--success)'>24</td><td style='color:var(--danger)'>35</td><td><span class='rate-pill'>40.68%</span></td></tr>
+          </tbody>
+        </table>
+      </div>
 
-      <h3 style="margin-bottom: 15px;">Top 15 Most Active Years in Space History (Descending Order)</h3>
-      <table>
-        <thead>
-          <tr><th>Rank</th><th>Year</th><th>Total Launches</th><th>Successes</th><th>Failures</th><th>Success Rate</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><b>#1</b></td><td><b>2025</b></td><td>341</td><td style='color:var(--success)'>329</td><td style='color:var(--danger)'>12</td><td><span class='rate-pill '>96.48%</span></td></tr><tr><td><b>#2</b></td><td><b>2024</b></td><td>272</td><td style='color:var(--success)'>265</td><td style='color:var(--danger)'>7</td><td><span class='rate-pill '>97.43%</span></td></tr><tr><td><b>#3</b></td><td><b>2026</b></td><td>266</td><td style='color:var(--success)'>258</td><td style='color:var(--danger)'>8</td><td><span class='rate-pill '>96.99%</span></td></tr><tr><td><b>#4</b></td><td><b>2023</b></td><td>235</td><td style='color:var(--success)'>223</td><td style='color:var(--danger)'>12</td><td><span class='rate-pill '>94.89%</span></td></tr><tr><td><b>#5</b></td><td><b>2022</b></td><td>193</td><td style='color:var(--success)'>185</td><td style='color:var(--danger)'>8</td><td><span class='rate-pill '>95.85%</span></td></tr><tr><td><b>#6</b></td><td><b>2021</b></td><td>155</td><td style='color:var(--success)'>142</td><td style='color:var(--danger)'>13</td><td><span class='rate-pill '>91.61%</span></td></tr><tr><td><b>#7</b></td><td><b>1966</b></td><td>139</td><td style='color:var(--success)'>125</td><td style='color:var(--danger)'>14</td><td><span class='rate-pill sub90'>89.93%</span></td></tr><tr><td><b>#8</b></td><td><b>1967</b></td><td>139</td><td style='color:var(--success)'>125</td><td style='color:var(--danger)'>14</td><td><span class='rate-pill sub90'>89.93%</span></td></tr><tr><td><b>#9</b></td><td><b>1965</b></td><td>137</td><td style='color:var(--success)'>121</td><td style='color:var(--danger)'>16</td><td><span class='rate-pill sub90'>88.32%</span></td></tr><tr><td><b>#10</b></td><td><b>1971</b></td><td>133</td><td style='color:var(--success)'>118</td><td style='color:var(--danger)'>15</td><td><span class='rate-pill sub90'>88.72%</span></td></tr><tr><td><b>#11</b></td><td><b>1976</b></td><td>131</td><td style='color:var(--success)'>126</td><td style='color:var(--danger)'>5</td><td><span class='rate-pill '>96.18%</span></td></tr><tr><td><b>#12</b></td><td><b>1975</b></td><td>130</td><td style='color:var(--success)'>123</td><td style='color:var(--danger)'>7</td><td><span class='rate-pill '>94.62%</span></td></tr><tr><td><b>#13</b></td><td><b>1977</b></td><td>130</td><td style='color:var(--success)'>123</td><td style='color:var(--danger)'>7</td><td><span class='rate-pill '>94.62%</span></td></tr><tr><td><b>#14</b></td><td><b>1983</b></td><td>126</td><td style='color:var(--success)'>124</td><td style='color:var(--danger)'>2</td><td><span class='rate-pill '>98.41%</span></td></tr><tr><td><b>#15</b></td><td><b>1982</b></td><td>125</td><td style='color:var(--success)'>115</td><td style='color:var(--danger)'>10</td><td><span class='rate-pill '>92.0%</span></td></tr>
-        </tbody>
-      </table>
+      <h3 style="margin-bottom: 12px; font-size: 1.05rem;">Top 15 Most Active Years in Space History (Descending Order)</h3>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr><th>Rank</th><th>Year</th><th>Total Launches</th><th>Successes</th><th>Failures</th><th>Success Rate</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>#1</b></td><td><b>2025</b></td><td>341</td><td style='color:var(--success)'>329</td><td style='color:var(--danger)'>12</td><td><span class='rate-pill '>96.48%</span></td></tr><tr><td><b>#2</b></td><td><b>2024</b></td><td>272</td><td style='color:var(--success)'>265</td><td style='color:var(--danger)'>7</td><td><span class='rate-pill '>97.43%</span></td></tr><tr><td><b>#3</b></td><td><b>2026</b></td><td>266</td><td style='color:var(--success)'>258</td><td style='color:var(--danger)'>8</td><td><span class='rate-pill '>96.99%</span></td></tr><tr><td><b>#4</b></td><td><b>2023</b></td><td>235</td><td style='color:var(--success)'>223</td><td style='color:var(--danger)'>12</td><td><span class='rate-pill '>94.89%</span></td></tr><tr><td><b>#5</b></td><td><b>2022</b></td><td>193</td><td style='color:var(--success)'>185</td><td style='color:var(--danger)'>8</td><td><span class='rate-pill '>95.85%</span></td></tr><tr><td><b>#6</b></td><td><b>2021</b></td><td>155</td><td style='color:var(--success)'>142</td><td style='color:var(--danger)'>13</td><td><span class='rate-pill '>91.61%</span></td></tr><tr><td><b>#7</b></td><td><b>1966</b></td><td>139</td><td style='color:var(--success)'>125</td><td style='color:var(--danger)'>14</td><td><span class='rate-pill sub90'>89.93%</span></td></tr><tr><td><b>#8</b></td><td><b>1967</b></td><td>139</td><td style='color:var(--success)'>125</td><td style='color:var(--danger)'>14</td><td><span class='rate-pill sub90'>89.93%</span></td></tr><tr><td><b>#9</b></td><td><b>1965</b></td><td>137</td><td style='color:var(--success)'>121</td><td style='color:var(--danger)'>16</td><td><span class='rate-pill sub90'>88.32%</span></td></tr><tr><td><b>#10</b></td><td><b>1971</b></td><td>133</td><td style='color:var(--success)'>118</td><td style='color:var(--danger)'>15</td><td><span class='rate-pill sub90'>88.72%</span></td></tr><tr><td><b>#11</b></td><td><b>1976</b></td><td>131</td><td style='color:var(--success)'>126</td><td style='color:var(--danger)'>5</td><td><span class='rate-pill '>96.18%</span></td></tr><tr><td><b>#12</b></td><td><b>1975</b></td><td>130</td><td style='color:var(--success)'>123</td><td style='color:var(--danger)'>7</td><td><span class='rate-pill '>94.62%</span></td></tr><tr><td><b>#13</b></td><td><b>1977</b></td><td>130</td><td style='color:var(--success)'>123</td><td style='color:var(--danger)'>7</td><td><span class='rate-pill '>94.62%</span></td></tr><tr><td><b>#14</b></td><td><b>1983</b></td><td>126</td><td style='color:var(--success)'>124</td><td style='color:var(--danger)'>2</td><td><span class='rate-pill '>98.41%</span></td></tr><tr><td><b>#15</b></td><td><b>1982</b></td><td>125</td><td style='color:var(--success)'>115</td><td style='color:var(--danger)'>10</td><td><span class='rate-pill '>92.0%</span></td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <!-- Tab 2: Pads -->
     <div id="tab-pads" class="tab-pane">
-      <h3 style="margin-bottom: 15px;">Top 15 Busiest Launch Pads Worldwide (Descending Order)</h3>
-      <table>
-        <thead>
-          <tr><th>Rank</th><th>Launch Pad Complex</th><th>Country</th><th>Total Launches</th><th>Successes</th><th>Failures</th><th>Success Rate</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><b>#1</b></td><td><b>Space Launch Complex 40</b></td><td>United States of America (USA)</td><td>402</td><td style='color:var(--success)'>397</td><td style='color:var(--danger)'>5</td><td><span class='rate-pill'>98.76%</span></td></tr><tr><td><b>#2</b></td><td><b>31/6</b></td><td>Kazakhstan (KAZ)</td><td>398</td><td style='color:var(--success)'>381</td><td style='color:var(--danger)'>17</td><td><span class='rate-pill'>95.73%</span></td></tr><tr><td><b>#3</b></td><td><b>1/5</b></td><td>Kazakhstan (KAZ)</td><td>344</td><td style='color:var(--success)'>306</td><td style='color:var(--danger)'>38</td><td><span class='rate-pill'>88.95%</span></td></tr><tr><td><b>#4</b></td><td><b>43/4 (43R)</b></td><td>Russia (RUS)</td><td>316</td><td style='color:var(--success)'>305</td><td style='color:var(--danger)'>11</td><td><span class='rate-pill'>96.52%</span></td></tr><tr><td><b>#5</b></td><td><b>41/1</b></td><td>Russia (RUS)</td><td>310</td><td style='color:var(--success)'>301</td><td style='color:var(--danger)'>9</td><td><span class='rate-pill'>97.1%</span></td></tr><tr><td><b>#6</b></td><td><b>Space Launch Complex 4E</b></td><td>United States of America (USA)</td><td>307</td><td style='color:var(--success)'>301</td><td style='color:var(--danger)'>6</td><td><span class='rate-pill'>98.05%</span></td></tr><tr><td><b>#7</b></td><td><b>43/3 (43L)</b></td><td>Russia (RUS)</td><td>234</td><td style='color:var(--success)'>227</td><td style='color:var(--danger)'>7</td><td><span class='rate-pill'>97.01%</span></td></tr><tr><td><b>#8</b></td><td><b>132/1 (132L)</b></td><td>Russia (RUS)</td><td>212</td><td style='color:var(--success)'>201</td><td style='color:var(--danger)'>11</td><td><span class='rate-pill'>94.81%</span></td></tr><tr><td><b>#9</b></td><td><b>Launch Complex 39A</b></td><td>United States of America (USA)</td><td>210</td><td style='color:var(--success)'>208</td><td style='color:var(--danger)'>2</td><td><span class='rate-pill'>99.05%</span></td></tr><tr><td><b>#10</b></td><td><b>132/2</b></td><td>Russia (RUS)</td><td>172</td><td style='color:var(--success)'>164</td><td style='color:var(--danger)'>8</td><td><span class='rate-pill'>95.35%</span></td></tr><tr><td><b>#11</b></td><td><b>133/3 (133L)</b></td><td>Russia (RUS)</td><td>155</td><td style='color:var(--success)'>146</td><td style='color:var(--danger)'>9</td><td><span class='rate-pill'>94.19%</span></td></tr><tr><td><b>#12</b></td><td><b>200/39 (200L)</b></td><td>Kazakhstan (KAZ)</td><td>143</td><td style='color:var(--success)'>136</td><td style='color:var(--danger)'>7</td><td><span class='rate-pill'>95.1%</span></td></tr><tr><td><b>#13</b></td><td><b>Space Launch Complex 17A</b></td><td>United States of America (USA)</td><td>142</td><td style='color:var(--success)'>129</td><td style='color:var(--danger)'>13</td><td><span class='rate-pill'>90.85%</span></td></tr><tr><td><b>#14</b></td><td><b>16/2</b></td><td>Russia (RUS)</td><td>133</td><td style='color:var(--success)'>130</td><td style='color:var(--danger)'>3</td><td><span class='rate-pill'>97.74%</span></td></tr><tr><td><b>#15</b></td><td><b>Space Launch Complex 17B</b></td><td>United States of America (USA)</td><td>128</td><td style='color:var(--success)'>117</td><td style='color:var(--danger)'>11</td><td><span class='rate-pill'>91.41%</span></td></tr>
-        </tbody>
-      </table>
+      <h3 style="margin-bottom: 12px; font-size: 1.05rem;">Top 15 Busiest Launch Pads Worldwide (Descending Order)</h3>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr><th>Rank</th><th>Launch Pad Complex</th><th>Country</th><th>Total Launches</th><th>Successes</th><th>Failures</th><th>Success Rate</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>#1</b></td><td><b>Space Launch Complex 40</b></td><td>United States of America (USA)</td><td>402</td><td style='color:var(--success)'>397</td><td style='color:var(--danger)'>5</td><td><span class='rate-pill'>98.76%</span></td></tr><tr><td><b>#2</b></td><td><b>31/6</b></td><td>Kazakhstan (KAZ)</td><td>398</td><td style='color:var(--success)'>381</td><td style='color:var(--danger)'>17</td><td><span class='rate-pill'>95.73%</span></td></tr><tr><td><b>#3</b></td><td><b>1/5</b></td><td>Kazakhstan (KAZ)</td><td>344</td><td style='color:var(--success)'>306</td><td style='color:var(--danger)'>38</td><td><span class='rate-pill'>88.95%</span></td></tr><tr><td><b>#4</b></td><td><b>43/4 (43R)</b></td><td>Russia (RUS)</td><td>316</td><td style='color:var(--success)'>305</td><td style='color:var(--danger)'>11</td><td><span class='rate-pill'>96.52%</span></td></tr><tr><td><b>#5</b></td><td><b>41/1</b></td><td>Russia (RUS)</td><td>310</td><td style='color:var(--success)'>301</td><td style='color:var(--danger)'>9</td><td><span class='rate-pill'>97.1%</span></td></tr><tr><td><b>#6</b></td><td><b>Space Launch Complex 4E</b></td><td>United States of America (USA)</td><td>307</td><td style='color:var(--success)'>301</td><td style='color:var(--danger)'>6</td><td><span class='rate-pill'>98.05%</span></td></tr><tr><td><b>#7</b></td><td><b>43/3 (43L)</b></td><td>Russia (RUS)</td><td>234</td><td style='color:var(--success)'>227</td><td style='color:var(--danger)'>7</td><td><span class='rate-pill'>97.01%</span></td></tr><tr><td><b>#8</b></td><td><b>132/1 (132L)</b></td><td>Russia (RUS)</td><td>212</td><td style='color:var(--success)'>201</td><td style='color:var(--danger)'>11</td><td><span class='rate-pill'>94.81%</span></td></tr><tr><td><b>#9</b></td><td><b>Launch Complex 39A</b></td><td>United States of America (USA)</td><td>210</td><td style='color:var(--success)'>208</td><td style='color:var(--danger)'>2</td><td><span class='rate-pill'>99.05%</span></td></tr><tr><td><b>#10</b></td><td><b>132/2</b></td><td>Russia (RUS)</td><td>172</td><td style='color:var(--success)'>164</td><td style='color:var(--danger)'>8</td><td><span class='rate-pill'>95.35%</span></td></tr><tr><td><b>#11</b></td><td><b>133/3 (133L)</b></td><td>Russia (RUS)</td><td>155</td><td style='color:var(--success)'>146</td><td style='color:var(--danger)'>9</td><td><span class='rate-pill'>94.19%</span></td></tr><tr><td><b>#12</b></td><td><b>200/39 (200L)</b></td><td>Kazakhstan (KAZ)</td><td>143</td><td style='color:var(--success)'>136</td><td style='color:var(--danger)'>7</td><td><span class='rate-pill'>95.1%</span></td></tr><tr><td><b>#13</b></td><td><b>Space Launch Complex 17A</b></td><td>United States of America (USA)</td><td>142</td><td style='color:var(--success)'>129</td><td style='color:var(--danger)'>13</td><td><span class='rate-pill'>90.85%</span></td></tr><tr><td><b>#14</b></td><td><b>16/2</b></td><td>Russia (RUS)</td><td>133</td><td style='color:var(--success)'>130</td><td style='color:var(--danger)'>3</td><td><span class='rate-pill'>97.74%</span></td></tr><tr><td><b>#15</b></td><td><b>Space Launch Complex 17B</b></td><td>United States of America (USA)</td><td>128</td><td style='color:var(--success)'>117</td><td style='color:var(--danger)'>11</td><td><span class='rate-pill'>91.41%</span></td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <!-- Tab 3: Orbits -->
     <div id="tab-orbits" class="tab-pane">
-      <h3 style="margin-bottom: 15px;">Most Targeted Orbits (Descending Order)</h3>
-      <table>
-        <thead>
-          <tr><th>Rank</th><th>Orbit</th><th>Total Launches</th><th>Global Share</th><th>Successes</th><th>Failures</th><th>Success Rate</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><b>#1</b></td><td><b>Low Earth Orbit</b></td><td>3970</td><td>56.15%</td><td style='color:var(--success)'>3713</td><td style='color:var(--danger)'>257</td><td><span class='rate-pill'>93.53%</span></td></tr><tr><td><b>#2</b></td><td><b>Geostationary Orbit</b></td><td>668</td><td>9.45%</td><td style='color:var(--success)'>620</td><td style='color:var(--danger)'>48</td><td><span class='rate-pill'>92.81%</span></td></tr><tr><td><b>#3</b></td><td><b>Sun-Synchronous Orbit</b></td><td>653</td><td>9.24%</td><td style='color:var(--success)'>608</td><td style='color:var(--danger)'>45</td><td><span class='rate-pill'>93.11%</span></td></tr><tr><td><b>#4</b></td><td><b>Elliptical Orbit</b></td><td>408</td><td>5.77%</td><td style='color:var(--success)'>388</td><td style='color:var(--danger)'>20</td><td><span class='rate-pill'>95.1%</span></td></tr><tr><td><b>#5</b></td><td><b>Geostationary Transfer Orbit</b></td><td>384</td><td>5.43%</td><td style='color:var(--success)'>373</td><td style='color:var(--danger)'>11</td><td><span class='rate-pill'>97.14%</span></td></tr><tr><td><b>#6</b></td><td><b>Suborbital</b></td><td>235</td><td>3.32%</td><td style='color:var(--success)'>201</td><td style='color:var(--danger)'>34</td><td><span class='rate-pill'>85.53%</span></td></tr><tr><td><b>#7</b></td><td><b>Medium Earth Orbit</b></td><td>228</td><td>3.22%</td><td style='color:var(--success)'>216</td><td style='color:var(--danger)'>12</td><td><span class='rate-pill'>94.74%</span></td></tr><tr><td><b>#8</b></td><td><b>Polar Orbit</b></td><td>193</td><td>2.73%</td><td style='color:var(--success)'>179</td><td style='color:var(--danger)'>14</td><td><span class='rate-pill'>92.75%</span></td></tr><tr><td><b>#9</b></td><td><b>Lunar Orbit</b></td><td>77</td><td>1.09%</td><td style='color:var(--success)'>58</td><td style='color:var(--danger)'>19</td><td><span class='rate-pill'>75.32%</span></td></tr><tr><td><b>#10</b></td><td><b>Heliocentric N/A</b></td><td>51</td><td>0.72%</td><td style='color:var(--success)'>46</td><td style='color:var(--danger)'>5</td><td><span class='rate-pill'>90.2%</span></td></tr><tr><td><b>#11</b></td><td><b>Geosynchronous Orbit</b></td><td>50</td><td>0.71%</td><td style='color:var(--success)'>47</td><td style='color:var(--danger)'>3</td><td><span class='rate-pill'>94.0%</span></td></tr><tr><td><b>#12</b></td><td><b>Lunar Impactor</b></td><td>25</td><td>0.35%</td><td style='color:var(--success)'>20</td><td style='color:var(--danger)'>5</td><td><span class='rate-pill'>80.0%</span></td></tr>
-        </tbody>
-      </table>
+      <h3 style="margin-bottom: 12px; font-size: 1.05rem;">Most Targeted Orbits (Descending Order)</h3>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr><th>Rank</th><th>Orbit</th><th>Total Launches</th><th>Global Share</th><th>Successes</th><th>Failures</th><th>Success Rate</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>#1</b></td><td><b>Low Earth Orbit</b></td><td>3970</td><td>56.15%</td><td style='color:var(--success)'>3713</td><td style='color:var(--danger)'>257</td><td><span class='rate-pill'>93.53%</span></td></tr><tr><td><b>#2</b></td><td><b>Geostationary Orbit</b></td><td>668</td><td>9.45%</td><td style='color:var(--success)'>620</td><td style='color:var(--danger)'>48</td><td><span class='rate-pill'>92.81%</span></td></tr><tr><td><b>#3</b></td><td><b>Sun-Synchronous Orbit</b></td><td>653</td><td>9.24%</td><td style='color:var(--success)'>608</td><td style='color:var(--danger)'>45</td><td><span class='rate-pill'>93.11%</span></td></tr><tr><td><b>#4</b></td><td><b>Elliptical Orbit</b></td><td>408</td><td>5.77%</td><td style='color:var(--success)'>388</td><td style='color:var(--danger)'>20</td><td><span class='rate-pill'>95.1%</span></td></tr><tr><td><b>#5</b></td><td><b>Geostationary Transfer Orbit</b></td><td>384</td><td>5.43%</td><td style='color:var(--success)'>373</td><td style='color:var(--danger)'>11</td><td><span class='rate-pill'>97.14%</span></td></tr><tr><td><b>#6</b></td><td><b>Suborbital</b></td><td>235</td><td>3.32%</td><td style='color:var(--success)'>201</td><td style='color:var(--danger)'>34</td><td><span class='rate-pill'>85.53%</span></td></tr><tr><td><b>#7</b></td><td><b>Medium Earth Orbit</b></td><td>228</td><td>3.22%</td><td style='color:var(--success)'>216</td><td style='color:var(--danger)'>12</td><td><span class='rate-pill'>94.74%</span></td></tr><tr><td><b>#8</b></td><td><b>Polar Orbit</b></td><td>193</td><td>2.73%</td><td style='color:var(--success)'>179</td><td style='color:var(--danger)'>14</td><td><span class='rate-pill'>92.75%</span></td></tr><tr><td><b>#9</b></td><td><b>Lunar Orbit</b></td><td>77</td><td>1.09%</td><td style='color:var(--success)'>58</td><td style='color:var(--danger)'>19</td><td><span class='rate-pill'>75.32%</span></td></tr><tr><td><b>#10</b></td><td><b>Heliocentric N/A</b></td><td>51</td><td>0.72%</td><td style='color:var(--success)'>46</td><td style='color:var(--danger)'>5</td><td><span class='rate-pill'>90.2%</span></td></tr><tr><td><b>#11</b></td><td><b>Geosynchronous Orbit</b></td><td>50</td><td>0.71%</td><td style='color:var(--success)'>47</td><td style='color:var(--danger)'>3</td><td><span class='rate-pill'>94.0%</span></td></tr><tr><td><b>#12</b></td><td><b>Lunar Impactor</b></td><td>25</td><td>0.35%</td><td style='color:var(--success)'>20</td><td style='color:var(--danger)'>5</td><td><span class='rate-pill'>80.0%</span></td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <!-- Tab 4: Providers -->
     <div id="tab-providers" class="tab-pane">
-      <h3 style="margin-bottom: 15px;">Top Launch Providers by Historical Volume (Descending Order)</h3>
-      <table>
-        <thead>
-          <tr><th>Rank</th><th>Provider</th><th>Total Launches</th><th>Global Share</th><th>Successes</th><th>Failures</th><th>Success Rate</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><b>#1</b></td><td><b>Soviet Space Program</b></td><td>2357</td><td>33.34%</td><td style='color:var(--success)'>2202</td><td style='color:var(--danger)'>155</td><td><span class='rate-pill'>93.42%</span></td></tr><tr><td><b>#2</b></td><td><b>United States Air Force</b></td><td>1051</td><td>14.87%</td><td style='color:var(--success)'>955</td><td style='color:var(--danger)'>96</td><td><span class='rate-pill'>90.87%</span></td></tr><tr><td><b>#3</b></td><td><b>SpaceX</b></td><td>743</td><td>10.51%</td><td style='color:var(--success)'>728</td><td style='color:var(--danger)'>15</td><td><span class='rate-pill'>97.98%</span></td></tr><tr><td><b>#4</b></td><td><b>China Aerospace Science and Technology Corporation</b></td><td>504</td><td>7.13%</td><td style='color:var(--success)'>490</td><td style='color:var(--danger)'>14</td><td><span class='rate-pill'>97.22%</span></td></tr><tr><td><b>#5</b></td><td><b>Arianespace</b></td><td>325</td><td>4.6%</td><td style='color:var(--success)'>310</td><td style='color:var(--danger)'>15</td><td><span class='rate-pill'>95.38%</span></td></tr><tr><td><b>#6</b></td><td><b>Russian Federal Space Agency (ROSCOSMOS)</b></td><td>247</td><td>3.49%</td><td style='color:var(--success)'>239</td><td style='color:var(--danger)'>8</td><td><span class='rate-pill'>96.76%</span></td></tr><tr><td><b>#7</b></td><td><b>Khrunichev State Research and Production Space Center</b></td><td>176</td><td>2.49%</td><td style='color:var(--success)'>165</td><td style='color:var(--danger)'>11</td><td><span class='rate-pill'>93.75%</span></td></tr><tr><td><b>#8</b></td><td><b>United Launch Alliance</b></td><td>160</td><td>2.26%</td><td style='color:var(--success)'>160</td><td style='color:var(--danger)'>0</td><td><span class='rate-pill'>100.0%</span></td></tr><tr><td><b>#9</b></td><td><b>Russian Space Forces</b></td><td>152</td><td>2.15%</td><td style='color:var(--success)'>144</td><td style='color:var(--danger)'>8</td><td><span class='rate-pill'>94.74%</span></td></tr><tr><td><b>#10</b></td><td><b>National Aeronautics and Space Administration</b></td><td>132</td><td>1.87%</td><td style='color:var(--success)'>114</td><td style='color:var(--danger)'>18</td><td><span class='rate-pill'>86.36%</span></td></tr><tr><td><b>#11</b></td><td><b>Rocket Lab</b></td><td>99</td><td>1.4%</td><td style='color:var(--success)'>95</td><td style='color:var(--danger)'>4</td><td><span class='rate-pill'>95.96%</span></td></tr><tr><td><b>#12</b></td><td><b>Indian Space Research Organization</b></td><td>83</td><td>1.17%</td><td style='color:var(--success)'>73</td><td style='color:var(--danger)'>10</td><td><span class='rate-pill'>87.95%</span></td></tr><tr><td><b>#13</b></td><td><b>Lockheed Martin</b></td><td>79</td><td>1.12%</td><td style='color:var(--success)'>76</td><td style='color:var(--danger)'>3</td><td><span class='rate-pill'>96.2%</span></td></tr><tr><td><b>#14</b></td><td><b>Virgin Galactic</b></td><td>67</td><td>0.95%</td><td style='color:var(--success)'>62</td><td style='color:var(--danger)'>5</td><td><span class='rate-pill'>92.54%</span></td></tr><tr><td><b>#15</b></td><td><b>Mitsubishi Heavy Industries</b></td><td>59</td><td>0.83%</td><td style='color:var(--success)'>57</td><td style='color:var(--danger)'>2</td><td><span class='rate-pill'>96.61%</span></td></tr>
-        </tbody>
-      </table>
+      <h3 style="margin-bottom: 12px; font-size: 1.05rem;">Top Launch Providers by Historical Volume (Descending Order)</h3>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr><th>Rank</th><th>Provider</th><th>Total Launches</th><th>Global Share</th><th>Successes</th><th>Failures</th><th>Success Rate</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>#1</b></td><td><b>Soviet Space Program</b></td><td>2357</td><td>33.34%</td><td style='color:var(--success)'>2202</td><td style='color:var(--danger)'>155</td><td><span class='rate-pill'>93.42%</span></td></tr><tr><td><b>#2</b></td><td><b>United States Air Force</b></td><td>1051</td><td>14.87%</td><td style='color:var(--success)'>955</td><td style='color:var(--danger)'>96</td><td><span class='rate-pill'>90.87%</span></td></tr><tr><td><b>#3</b></td><td><b>SpaceX</b></td><td>743</td><td>10.51%</td><td style='color:var(--success)'>728</td><td style='color:var(--danger)'>15</td><td><span class='rate-pill'>97.98%</span></td></tr><tr><td><b>#4</b></td><td><b>China Aerospace Science and Technology Corporation</b></td><td>504</td><td>7.13%</td><td style='color:var(--success)'>490</td><td style='color:var(--danger)'>14</td><td><span class='rate-pill'>97.22%</span></td></tr><tr><td><b>#5</b></td><td><b>Arianespace</b></td><td>325</td><td>4.6%</td><td style='color:var(--success)'>310</td><td style='color:var(--danger)'>15</td><td><span class='rate-pill'>95.38%</span></td></tr><tr><td><b>#6</b></td><td><b>Russian Federal Space Agency (ROSCOSMOS)</b></td><td>247</td><td>3.49%</td><td style='color:var(--success)'>239</td><td style='color:var(--danger)'>8</td><td><span class='rate-pill'>96.76%</span></td></tr><tr><td><b>#7</b></td><td><b>Khrunichev State Research and Production Space Center</b></td><td>176</td><td>2.49%</td><td style='color:var(--success)'>165</td><td style='color:var(--danger)'>11</td><td><span class='rate-pill'>93.75%</span></td></tr><tr><td><b>#8</b></td><td><b>United Launch Alliance</b></td><td>160</td><td>2.26%</td><td style='color:var(--success)'>160</td><td style='color:var(--danger)'>0</td><td><span class='rate-pill'>100.0%</span></td></tr><tr><td><b>#9</b></td><td><b>Russian Space Forces</b></td><td>152</td><td>2.15%</td><td style='color:var(--success)'>144</td><td style='color:var(--danger)'>8</td><td><span class='rate-pill'>94.74%</span></td></tr><tr><td><b>#10</b></td><td><b>National Aeronautics and Space Administration</b></td><td>132</td><td>1.87%</td><td style='color:var(--success)'>114</td><td style='color:var(--danger)'>18</td><td><span class='rate-pill'>86.36%</span></td></tr><tr><td><b>#11</b></td><td><b>Rocket Lab</b></td><td>99</td><td>1.4%</td><td style='color:var(--success)'>95</td><td style='color:var(--danger)'>4</td><td><span class='rate-pill'>95.96%</span></td></tr><tr><td><b>#12</b></td><td><b>Indian Space Research Organization</b></td><td>83</td><td>1.17%</td><td style='color:var(--success)'>73</td><td style='color:var(--danger)'>10</td><td><span class='rate-pill'>87.95%</span></td></tr><tr><td><b>#13</b></td><td><b>Lockheed Martin</b></td><td>79</td><td>1.12%</td><td style='color:var(--success)'>76</td><td style='color:var(--danger)'>3</td><td><span class='rate-pill'>96.2%</span></td></tr><tr><td><b>#14</b></td><td><b>Virgin Galactic</b></td><td>67</td><td>0.95%</td><td style='color:var(--success)'>62</td><td style='color:var(--danger)'>5</td><td><span class='rate-pill'>92.54%</span></td></tr><tr><td><b>#15</b></td><td><b>Mitsubishi Heavy Industries</b></td><td>59</td><td>0.83%</td><td style='color:var(--success)'>57</td><td style='color:var(--danger)'>2</td><td><span class='rate-pill'>96.61%</span></td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <!-- Tab 5: Rockets -->
     <div id="tab-rockets" class="tab-pane">
-      <h3 style="margin-bottom: 15px;">Top Workhorse Rocket Configurations (Descending Order)</h3>
-      <table>
-        <thead>
-          <tr><th>Rank</th><th>Rocket Configuration</th><th>Primary Provider</th><th>Total Flights</th><th>Successes</th><th>Failures</th><th>Success Rate</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><b>#1</b></td><td><b>Falcon 9 Block 5</b></td><td>SpaceX</td><td>644</td><td style='color:var(--success)'>643</td><td style='color:var(--danger)'>1</td><td><span class='rate-pill'>99.84%</span></td></tr><tr><td><b>#2</b></td><td><b>Soyuz U</b></td><td>Soviet Space Program</td><td>549</td><td style='color:var(--success)'>532</td><td style='color:var(--danger)'>17</td><td><span class='rate-pill'>96.9%</span></td></tr><tr><td><b>#3</b></td><td><b>Kosmos-3M (11K65M)</b></td><td>Soviet Space Program</td><td>387</td><td style='color:var(--success)'>367</td><td style='color:var(--danger)'>20</td><td><span class='rate-pill'>94.83%</span></td></tr><tr><td><b>#4</b></td><td><b>Voskhod</b></td><td>Soviet Space Program</td><td>299</td><td style='color:var(--success)'>286</td><td style='color:var(--danger)'>13</td><td><span class='rate-pill'>95.65%</span></td></tr><tr><td><b>#5</b></td><td><b>Molniya-M 2BL</b></td><td>Soviet Space Program</td><td>231</td><td style='color:var(--success)'>219</td><td style='color:var(--danger)'>12</td><td><span class='rate-pill'>94.81%</span></td></tr><tr><td><b>#6</b></td><td><b>Kosmos 11K63</b></td><td>Soviet Space Program</td><td>126</td><td style='color:var(--success)'>118</td><td style='color:var(--danger)'>8</td><td><span class='rate-pill'>93.65%</span></td></tr><tr><td><b>#7</b></td><td><b>Electron</b></td><td>Rocket Lab</td><td>99</td><td style='color:var(--success)'>95</td><td style='color:var(--danger)'>4</td><td><span class='rate-pill'>95.96%</span></td></tr><tr><td><b>#8</b></td><td><b>Tsiklon-3</b></td><td>Soviet Space Program</td><td>97</td><td style='color:var(--success)'>93</td><td style='color:var(--danger)'>4</td><td><span class='rate-pill'>95.88%</span></td></tr><tr><td><b>#9</b></td><td><b>Vostok 8A92M</b></td><td>Soviet Space Program</td><td>93</td><td style='color:var(--success)'>92</td><td style='color:var(--danger)'>1</td><td><span class='rate-pill'>98.92%</span></td></tr><tr><td><b>#10</b></td><td><b>Tsiklon-2</b></td><td>Soviet Space Program</td><td>92</td><td style='color:var(--success)'>90</td><td style='color:var(--danger)'>2</td><td><span class='rate-pill'>97.83%</span></td></tr><tr><td><b>#11</b></td><td><b>Long March 2D</b></td><td>China Aerospace Science and Technology Corporation</td><td>80</td><td style='color:var(--success)'>79</td><td style='color:var(--danger)'>1</td><td><span class='rate-pill'>98.75%</span></td></tr><tr><td><b>#12</b></td><td><b>Ariane 5 ECA</b></td><td>Arianespace</td><td>73</td><td style='color:var(--success)'>71</td><td style='color:var(--danger)'>2</td><td><span class='rate-pill'>97.26%</span></td></tr><tr><td><b>#13</b></td><td><b>SpaceShipTwo</b></td><td>Virgin Galactic</td><td>67</td><td style='color:var(--success)'>62</td><td style='color:var(--danger)'>5</td><td><span class='rate-pill'>92.54%</span></td></tr><tr><td><b>#14</b></td><td><b>Proton-K/DM</b></td><td>Soviet Space Program</td><td>66</td><td style='color:var(--success)'>61</td><td style='color:var(--danger)'>5</td><td><span class='rate-pill'>92.42%</span></td></tr><tr><td><b>#15</b></td><td><b>Long March 3B/E</b></td><td>China Aerospace Science and Technology Corporation</td><td>61</td><td style='color:var(--success)'>59</td><td style='color:var(--danger)'>2</td><td><span class='rate-pill'>96.72%</span></td></tr>
-        </tbody>
-      </table>
+      <h3 style="margin-bottom: 12px; font-size: 1.05rem;">Top Workhorse Rocket Configurations (Descending Order)</h3>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr><th>Rank</th><th>Rocket Configuration</th><th>Primary Provider</th><th>Total Flights</th><th>Successes</th><th>Failures</th><th>Success Rate</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>#1</b></td><td><b>Falcon 9 Block 5</b></td><td>SpaceX</td><td>644</td><td style='color:var(--success)'>643</td><td style='color:var(--danger)'>1</td><td><span class='rate-pill'>99.84%</span></td></tr><tr><td><b>#2</b></td><td><b>Soyuz U</b></td><td>Soviet Space Program</td><td>549</td><td style='color:var(--success)'>532</td><td style='color:var(--danger)'>17</td><td><span class='rate-pill'>96.9%</span></td></tr><tr><td><b>#3</b></td><td><b>Kosmos-3M (11K65M)</b></td><td>Soviet Space Program</td><td>387</td><td style='color:var(--success)'>367</td><td style='color:var(--danger)'>20</td><td><span class='rate-pill'>94.83%</span></td></tr><tr><td><b>#4</b></td><td><b>Voskhod</b></td><td>Soviet Space Program</td><td>299</td><td style='color:var(--success)'>286</td><td style='color:var(--danger)'>13</td><td><span class='rate-pill'>95.65%</span></td></tr><tr><td><b>#5</b></td><td><b>Molniya-M 2BL</b></td><td>Soviet Space Program</td><td>231</td><td style='color:var(--success)'>219</td><td style='color:var(--danger)'>12</td><td><span class='rate-pill'>94.81%</span></td></tr><tr><td><b>#6</b></td><td><b>Kosmos 11K63</b></td><td>Soviet Space Program</td><td>126</td><td style='color:var(--success)'>118</td><td style='color:var(--danger)'>8</td><td><span class='rate-pill'>93.65%</span></td></tr><tr><td><b>#7</b></td><td><b>Electron</b></td><td>Rocket Lab</td><td>99</td><td style='color:var(--success)'>95</td><td style='color:var(--danger)'>4</td><td><span class='rate-pill'>95.96%</span></td></tr><tr><td><b>#8</b></td><td><b>Tsiklon-3</b></td><td>Soviet Space Program</td><td>97</td><td style='color:var(--success)'>93</td><td style='color:var(--danger)'>4</td><td><span class='rate-pill'>95.88%</span></td></tr><tr><td><b>#9</b></td><td><b>Vostok 8A92M</b></td><td>Soviet Space Program</td><td>93</td><td style='color:var(--success)'>92</td><td style='color:var(--danger)'>1</td><td><span class='rate-pill'>98.92%</span></td></tr><tr><td><b>#10</b></td><td><b>Tsiklon-2</b></td><td>Soviet Space Program</td><td>92</td><td style='color:var(--success)'>90</td><td style='color:var(--danger)'>2</td><td><span class='rate-pill'>97.83%</span></td></tr><tr><td><b>#11</b></td><td><b>Long March 2D</b></td><td>China Aerospace Science and Technology Corporation</td><td>80</td><td style='color:var(--success)'>79</td><td style='color:var(--danger)'>1</td><td><span class='rate-pill'>98.75%</span></td></tr><tr><td><b>#12</b></td><td><b>Ariane 5 ECA</b></td><td>Arianespace</td><td>73</td><td style='color:var(--success)'>71</td><td style='color:var(--danger)'>2</td><td><span class='rate-pill'>97.26%</span></td></tr><tr><td><b>#13</b></td><td><b>SpaceShipTwo</b></td><td>Virgin Galactic</td><td>67</td><td style='color:var(--success)'>62</td><td style='color:var(--danger)'>5</td><td><span class='rate-pill'>92.54%</span></td></tr><tr><td><b>#14</b></td><td><b>Proton-K/DM</b></td><td>Soviet Space Program</td><td>66</td><td style='color:var(--success)'>61</td><td style='color:var(--danger)'>5</td><td><span class='rate-pill'>92.42%</span></td></tr><tr><td><b>#15</b></td><td><b>Long March 3B/E</b></td><td>China Aerospace Science and Technology Corporation</td><td>61</td><td style='color:var(--success)'>59</td><td style='color:var(--danger)'>2</td><td><span class='rate-pill'>96.72%</span></td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <!-- Tab 6: Missions -->
     <div id="tab-missions" class="tab-pane">
-      <h3 style="margin-bottom: 15px;">Mission Purpose Distribution (Descending Order)</h3>
-      <table>
-        <thead>
-          <tr><th>Rank</th><th>Mission Objective</th><th>Total Launches</th><th>Global Share</th><th>Successes</th><th>Failures</th><th>Success Rate</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><b>#1</b></td><td><b>Government/Top Secret</b></td><td>2303</td><td>32.57%</td><td style='color:var(--success)'>2177</td><td style='color:var(--danger)'>126</td><td><span class='rate-pill'>94.53%</span></td></tr><tr><td><b>#2</b></td><td><b>Communications</b></td><td>1700</td><td>24.05%</td><td style='color:var(--success)'>1627</td><td style='color:var(--danger)'>73</td><td><span class='rate-pill'>95.71%</span></td></tr><tr><td><b>#3</b></td><td><b>Earth Science</b></td><td>982</td><td>13.89%</td><td style='color:var(--success)'>907</td><td style='color:var(--danger)'>75</td><td><span class='rate-pill'>92.36%</span></td></tr><tr><td><b>#4</b></td><td><b>Navigation</b></td><td>415</td><td>5.87%</td><td style='color:var(--success)'>395</td><td style='color:var(--danger)'>20</td><td><span class='rate-pill'>95.18%</span></td></tr><tr><td><b>#5</b></td><td><b>Test Flight</b></td><td>358</td><td>5.06%</td><td style='color:var(--success)'>270</td><td style='color:var(--danger)'>88</td><td><span class='rate-pill'>75.42%</span></td></tr><tr><td><b>#6</b></td><td><b>Human Exploration</b></td><td>315</td><td>4.46%</td><td style='color:var(--success)'>307</td><td style='color:var(--danger)'>8</td><td><span class='rate-pill'>97.46%</span></td></tr><tr><td><b>#7</b></td><td><b>Test Target</b></td><td>205</td><td>2.9%</td><td style='color:var(--success)'>187</td><td style='color:var(--danger)'>18</td><td><span class='rate-pill'>91.22%</span></td></tr><tr><td><b>#8</b></td><td><b>Astrophysics</b></td><td>170</td><td>2.4%</td><td style='color:var(--success)'>155</td><td style='color:var(--danger)'>15</td><td><span class='rate-pill'>91.18%</span></td></tr><tr><td><b>#9</b></td><td><b>Resupply</b></td><td>131</td><td>1.85%</td><td style='color:var(--success)'>127</td><td style='color:var(--danger)'>4</td><td><span class='rate-pill'>96.95%</span></td></tr><tr><td><b>#10</b></td><td><b>Robotic Exploration</b></td><td>88</td><td>1.24%</td><td style='color:var(--success)'>71</td><td style='color:var(--danger)'>17</td><td><span class='rate-pill'>80.68%</span></td></tr><tr><td><b>#11</b></td><td><b>Lunar Exploration</b></td><td>83</td><td>1.17%</td><td style='color:var(--success)'>59</td><td style='color:var(--danger)'>24</td><td><span class='rate-pill'>71.08%</span></td></tr><tr><td><b>#12</b></td><td><b>Dedicated Rideshare</b></td><td>72</td><td>1.02%</td><td style='color:var(--success)'>68</td><td style='color:var(--danger)'>4</td><td><span class='rate-pill'>94.44%</span></td></tr>
-        </tbody>
-      </table>
+      <h3 style="margin-bottom: 12px; font-size: 1.05rem;">Mission Purpose Distribution (Descending Order)</h3>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr><th>Rank</th><th>Mission Objective</th><th>Total Launches</th><th>Global Share</th><th>Successes</th><th>Failures</th><th>Success Rate</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>#1</b></td><td><b>Government/Top Secret</b></td><td>2303</td><td>32.57%</td><td style='color:var(--success)'>2177</td><td style='color:var(--danger)'>126</td><td><span class='rate-pill'>94.53%</span></td></tr><tr><td><b>#2</b></td><td><b>Communications</b></td><td>1700</td><td>24.05%</td><td style='color:var(--success)'>1627</td><td style='color:var(--danger)'>73</td><td><span class='rate-pill'>95.71%</span></td></tr><tr><td><b>#3</b></td><td><b>Earth Science</b></td><td>982</td><td>13.89%</td><td style='color:var(--success)'>907</td><td style='color:var(--danger)'>75</td><td><span class='rate-pill'>92.36%</span></td></tr><tr><td><b>#4</b></td><td><b>Navigation</b></td><td>415</td><td>5.87%</td><td style='color:var(--success)'>395</td><td style='color:var(--danger)'>20</td><td><span class='rate-pill'>95.18%</span></td></tr><tr><td><b>#5</b></td><td><b>Test Flight</b></td><td>358</td><td>5.06%</td><td style='color:var(--success)'>270</td><td style='color:var(--danger)'>88</td><td><span class='rate-pill'>75.42%</span></td></tr><tr><td><b>#6</b></td><td><b>Human Exploration</b></td><td>315</td><td>4.46%</td><td style='color:var(--success)'>307</td><td style='color:var(--danger)'>8</td><td><span class='rate-pill'>97.46%</span></td></tr><tr><td><b>#7</b></td><td><b>Test Target</b></td><td>205</td><td>2.9%</td><td style='color:var(--success)'>187</td><td style='color:var(--danger)'>18</td><td><span class='rate-pill'>91.22%</span></td></tr><tr><td><b>#8</b></td><td><b>Astrophysics</b></td><td>170</td><td>2.4%</td><td style='color:var(--success)'>155</td><td style='color:var(--danger)'>15</td><td><span class='rate-pill'>91.18%</span></td></tr><tr><td><b>#9</b></td><td><b>Resupply</b></td><td>131</td><td>1.85%</td><td style='color:var(--success)'>127</td><td style='color:var(--danger)'>4</td><td><span class='rate-pill'>96.95%</span></td></tr><tr><td><b>#10</b></td><td><b>Robotic Exploration</b></td><td>88</td><td>1.24%</td><td style='color:var(--success)'>71</td><td style='color:var(--danger)'>17</td><td><span class='rate-pill'>80.68%</span></td></tr><tr><td><b>#11</b></td><td><b>Lunar Exploration</b></td><td>83</td><td>1.17%</td><td style='color:var(--success)'>59</td><td style='color:var(--danger)'>24</td><td><span class='rate-pill'>71.08%</span></td></tr><tr><td><b>#12</b></td><td><b>Dedicated Rideshare</b></td><td>72</td><td>1.02%</td><td style='color:var(--success)'>68</td><td style='color:var(--danger)'>4</td><td><span class='rate-pill'>94.44%</span></td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <!-- Tab 7: Countries -->
     <div id="tab-countries" class="tab-pane">
-      <h3 style="margin-bottom: 15px;">Leading Launching Nations (Descending Order)</h3>
-      <table>
-        <thead>
-          <tr><th>Rank</th><th>Country Name</th><th>Code</th><th>Total Launches</th><th>Global Share</th><th>Successes</th><th>Failures</th><th>Success Rate</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><b>#1</b></td><td><b>United States of America</b></td><td>USA</td><td>2518</td><td>35.62%</td><td style='color:var(--success)'>2338</td><td style='color:var(--danger)'>180</td><td><span class='rate-pill'>92.85%</span></td></tr><tr><td><b>#2</b></td><td><b>Russia</b></td><td>RUS</td><td>1798</td><td>25.43%</td><td style='color:var(--success)'>1714</td><td style='color:var(--danger)'>84</td><td><span class='rate-pill'>95.33%</span></td></tr><tr><td><b>#3</b></td><td><b>Kazakhstan</b></td><td>KAZ</td><td>1328</td><td>18.78%</td><td style='color:var(--success)'>1223</td><td style='color:var(--danger)'>105</td><td><span class='rate-pill'>92.09%</span></td></tr><tr><td><b>#4</b></td><td><b>China</b></td><td>CHN</td><td>687</td><td>9.72%</td><td style='color:var(--success)'>646</td><td style='color:var(--danger)'>41</td><td><span class='rate-pill'>94.03%</span></td></tr><tr><td><b>#5</b></td><td><b>French Guiana</b></td><td>GUF</td><td>332</td><td>4.7%</td><td style='color:var(--success)'>313</td><td style='color:var(--danger)'>19</td><td><span class='rate-pill'>94.28%</span></td></tr><tr><td><b>#6</b></td><td><b>Japan</b></td><td>JPN</td><td>153</td><td>2.16%</td><td style='color:var(--success)'>131</td><td style='color:var(--danger)'>22</td><td><span class='rate-pill'>85.62%</span></td></tr><tr><td><b>#7</b></td><td><b>India</b></td><td>IND</td><td>86</td><td>1.22%</td><td style='color:var(--success)'>76</td><td style='color:var(--danger)'>10</td><td><span class='rate-pill'>88.37%</span></td></tr><tr><td><b>#8</b></td><td><b>New Zealand</b></td><td>NZL</td><td>86</td><td>1.22%</td><td style='color:var(--success)'>82</td><td style='color:var(--danger)'>4</td><td><span class='rate-pill'>95.35%</span></td></tr><tr><td><b>#9</b></td><td><b>Iran</b></td><td>IRN</td><td>16</td><td>0.23%</td><td style='color:var(--success)'>8</td><td style='color:var(--danger)'>8</td><td><span class='rate-pill'>50.0%</span></td></tr><tr><td><b>#10</b></td><td><b>Australia</b></td><td>AUS</td><td>12</td><td>0.17%</td><td style='color:var(--success)'>6</td><td style='color:var(--danger)'>6</td><td><span class='rate-pill'>50.0%</span></td></tr><tr><td><b>#11</b></td><td><b>Israel</b></td><td>ISR</td><td>11</td><td>0.16%</td><td style='color:var(--success)'>9</td><td style='color:var(--danger)'>2</td><td><span class='rate-pill'>81.82%</span></td></tr><tr><td><b>#12</b></td><td><b>Italy</b></td><td>ITA</td><td>9</td><td>0.13%</td><td style='color:var(--success)'>9</td><td style='color:var(--danger)'>0</td><td><span class='rate-pill'>100.0%</span></td></tr>
-        </tbody>
-      </table>
+      <h3 style="margin-bottom: 12px; font-size: 1.05rem;">Leading Launching Nations (Descending Order)</h3>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr><th>Rank</th><th>Country Name</th><th>Code</th><th>Total Launches</th><th>Global Share</th><th>Successes</th><th>Failures</th><th>Success Rate</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>#1</b></td><td><b>United States of America</b></td><td>USA</td><td>2518</td><td>35.62%</td><td style='color:var(--success)'>2338</td><td style='color:var(--danger)'>180</td><td><span class='rate-pill'>92.85%</span></td></tr><tr><td><b>#2</b></td><td><b>Russia</b></td><td>RUS</td><td>1798</td><td>25.43%</td><td style='color:var(--success)'>1714</td><td style='color:var(--danger)'>84</td><td><span class='rate-pill'>95.33%</span></td></tr><tr><td><b>#3</b></td><td><b>Kazakhstan</b></td><td>KAZ</td><td>1328</td><td>18.78%</td><td style='color:var(--success)'>1223</td><td style='color:var(--danger)'>105</td><td><span class='rate-pill'>92.09%</span></td></tr><tr><td><b>#4</b></td><td><b>China</b></td><td>CHN</td><td>687</td><td>9.72%</td><td style='color:var(--success)'>646</td><td style='color:var(--danger)'>41</td><td><span class='rate-pill'>94.03%</span></td></tr><tr><td><b>#5</b></td><td><b>French Guiana</b></td><td>GUF</td><td>332</td><td>4.7%</td><td style='color:var(--success)'>313</td><td style='color:var(--danger)'>19</td><td><span class='rate-pill'>94.28%</span></td></tr><tr><td><b>#6</b></td><td><b>Japan</b></td><td>JPN</td><td>153</td><td>2.16%</td><td style='color:var(--success)'>131</td><td style='color:var(--danger)'>22</td><td><span class='rate-pill'>85.62%</span></td></tr><tr><td><b>#7</b></td><td><b>India</b></td><td>IND</td><td>86</td><td>1.22%</td><td style='color:var(--success)'>76</td><td style='color:var(--danger)'>10</td><td><span class='rate-pill'>88.37%</span></td></tr><tr><td><b>#8</b></td><td><b>New Zealand</b></td><td>NZL</td><td>86</td><td>1.22%</td><td style='color:var(--success)'>82</td><td style='color:var(--danger)'>4</td><td><span class='rate-pill'>95.35%</span></td></tr><tr><td><b>#9</b></td><td><b>Iran</b></td><td>IRN</td><td>16</td><td>0.23%</td><td style='color:var(--success)'>8</td><td style='color:var(--danger)'>8</td><td><span class='rate-pill'>50.0%</span></td></tr><tr><td><b>#10</b></td><td><b>Australia</b></td><td>AUS</td><td>12</td><td>0.17%</td><td style='color:var(--success)'>6</td><td style='color:var(--danger)'>6</td><td><span class='rate-pill'>50.0%</span></td></tr><tr><td><b>#11</b></td><td><b>Israel</b></td><td>ISR</td><td>11</td><td>0.16%</td><td style='color:var(--success)'>9</td><td style='color:var(--danger)'>2</td><td><span class='rate-pill'>81.82%</span></td></tr><tr><td><b>#12</b></td><td><b>Italy</b></td><td>ITA</td><td>9</td><td>0.13%</td><td style='color:var(--success)'>9</td><td style='color:var(--danger)'>0</td><td><span class='rate-pill'>100.0%</span></td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <footer>
@@ -320,11 +362,13 @@
   </div>
 
   <script>
-    function switchTab(tabId) {
+    function switchTab(tabId, ev) {
       document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
       document.getElementById(tabId).classList.add('active');
-      event.target.classList.add('active');
+      if (ev && ev.target) {
+        ev.target.classList.add('active');
+      }
     }
   </script>
 </body>
