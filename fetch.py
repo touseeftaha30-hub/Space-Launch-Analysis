@@ -19,7 +19,7 @@ if current_offset > 0:
 else:
     current_url = BASE_URL
 
-print("Starting to fetch launch data.")
+print("Starting to fetch launch data...\n")
 
 while current_url:
     response = requests.get(current_url, timeout=60)
@@ -68,4 +68,4 @@ while current_url:
     if current_url:
         time.sleep(2)
 
-print("All launch data successfully downloaded and saved to launches_raw.json!")
+print("\nAll launch data successfully downloaded and saved to launches_raw.json!")
